@@ -3,17 +3,16 @@
  * @return {number}
  */
 var majorityElement = function(nums) {
-    let majority = nums[0];
-    let vote = 1;
-    for(let i=1; i<nums.length; i++){
-        if(vote == 0){
-            majority = nums[i];
-            vote++;
-        }else if(majority == nums[i]){
-            vote++;
-        }else{
-            vote--;
+    const ht = {};
+    
+    for(const n of nums){
+        ht[n] = ht[n] + 1 || 1; 
+    }
+    
+    for(const key in ht){
+        if(ht[key] > Math.floor(nums.length/2)){
+            return key;
         }
     }
-    return majority
+    
 };
